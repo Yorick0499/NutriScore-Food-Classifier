@@ -1,4 +1,4 @@
-# NutriScore-Food-Classifier
+# NutriScore Food Classifier
 ![nutriscore](https://github.com/user-attachments/assets/d0718889-c7ba-40bf-a947-33ae926e7d84)
 ## Project description
 This project aims to classify food products based on a custom NutriScore system. The main goal is to use a ML model that will assign the nutriscore label to products based on proteins, fats, etc.
