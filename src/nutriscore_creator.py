@@ -89,9 +89,9 @@ def nutriscore_creator(data):
             data.loc[i,'Carbo_points'] = 1
 
     
-    data['Nutriscore digit'] = data[['Sugar_points','Fat_points','Protein_points','Salt_points','Carbo_points']].mean(axis=1)
+    data['NutriValue'] = data[['Sugar_points','Fat_points','Protein_points','Salt_points','Carbo_points']].mean(axis=1)
 
-    data['Nutriscore'] = data['Nutriscore digit'].apply(lambda x: 'A' if (x <= 5 and x >= 4.5)
+    data['NutriScore'] = data['NutriValue'].apply(lambda x: 'A' if (x <= 5 and x >= 4.5)
                                                         else ('B' if (x < 4.5 and x >= 4)
                                                               else ('C' if (x < 4 and x >= 3.4)
                                                                     else ('D' if (x < 3.4 and x >= 2.4)
