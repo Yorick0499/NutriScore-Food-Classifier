@@ -38,5 +38,5 @@ recall = recall_score(y_test,y_pred,average='weighted')
 F_Score = f1_score(y_test,y_pred,average='weighted')
 
 ### Model evaluation
-# print(f'EVALUATION\nAccuracy: {accuracy:.3f}\nPrecision: {precision:.3f}\nRecall: {recall:.3f}\nF Score: {F_Score:.3f}')
+print(f'EVALUATION\nAccuracy: {accuracy:.3f}\nPrecision: {precision:.3f}\nRecall: {recall:.3f}\nF Score: {F_Score:.3f}')
 # print(confusion_matrix(y_test,y_pred))
