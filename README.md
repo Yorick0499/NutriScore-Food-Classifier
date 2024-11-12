@@ -7,3 +7,16 @@ This works with the food dataset which is located in "data" folder.
 "data_cleaner.py" is a script which cleaning data from food dataset and use "nutriscore_creator" function. Mentioned function is a custom NutriScore system based on fat, carbohydrates, protein, sugar and salt attributes.
 Then the data_saver script exports the data to a new csv file.
 Further functionalities are in the development phase
+## Current model evaluation
+Accuracy: 71%\
+#################--------
+
+Precision: 62%\
+###############----------
+
+Recall: 71%\
+#################--------
+
+Recall: 64%\
+################---------
+######  Update: 12.11.2024
