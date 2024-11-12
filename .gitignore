@@ -166,3 +166,6 @@ image/
 
 #.Rhistory file
 *.Rhistory
+
+#Other files
+md_indicator_creator.py
