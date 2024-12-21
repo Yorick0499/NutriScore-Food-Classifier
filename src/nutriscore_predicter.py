@@ -7,24 +7,24 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from sklearn.inspection import DecisionBoundaryDisplay
 from sklearn.pipeline import Pipeline
-from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import GridSearchCV
 
 
-path = 'data/food_data_nutriscore.csv'
-data = pd.read_csv(path)
+path = 'data/cleaned_synth_data.csv'
+data = pd.read_csv(path,sep='\t')
 
 data['NutriScore'] = data['NutriScore'].apply(lambda x: 0 if x == 'A' else (1 if x == 'B' else (2 if x == 'C' else (3 if x == 'D' else 4))))
 
 X = data[['Fat','Carbohydrates','Sugar','Protein','Salt']]
 y = data['NutriScore']
 
-pca = PCA(n_components=2)
 
 
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2,random_state=124,stratify=y)
-X_train = pca.fit_transform(X_train)
-X_test = pca.fit_transform(X_test)
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2,random_state=123,stratify=y)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
 
 model = KNeighborsClassifier(n_neighbors=14)
 model.fit(X_train, y_train)
@@ -39,4 +39,4 @@ F_Score = f1_score(y_test,y_pred,average='weighted')
 
 ### Model evaluation
 print(f'EVALUATION\nAccuracy: {accuracy:.3f}\nPrecision: {precision:.3f}\nRecall: {recall:.3f}\nF Score: {F_Score:.3f}')
-# print(confusion_matrix(y_test,y_pred))
+print(confusion_matrix(y_test,y_pred))
