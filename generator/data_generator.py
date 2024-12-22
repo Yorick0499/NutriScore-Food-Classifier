@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Loading and cleaning data
-real_data = pd.read_csv('data/raw_food_data.csv')
+real_data = pd.read_csv('data/food_data.csv')
 
 cleaned_data = real_data.rename(columns={'Calories (kcal)':'Calories',
                      'Fat (g)':'Fat',
@@ -84,14 +84,14 @@ def text_data_generator(n):
 
 
 print('Generating numerical data...')
-synthetic_numerical_data = numerical_data_generator(20000)
+synthetic_numerical_data = numerical_data_generator(100)
 print('Generating text data...')
-synthetic_text_data = text_data_generator(20000)
+synthetic_text_data = text_data_generator(100)
 
 print('Merging data...')
 synthetic_dataset = pd.concat([synthetic_numerical_data,synthetic_text_data],axis=1)
 print('Reordering data...')
 synthetic_dataset_reordered = synthetic_dataset.iloc[:, [7,8,0,1,2,3,4,5,9,10,11,12,6,13]]
 print('Saving data...')
-synthetic_dataset_reordered.to_csv('synthetic_data.csv', sep='\t', index=False, header=True)
+synthetic_dataset_reordered.to_csv('data/new_synth_data.csv', sep='\t', index=False, header=True)
 print('Successful!')
