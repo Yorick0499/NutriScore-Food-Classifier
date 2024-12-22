@@ -170,7 +170,7 @@ image/
 # Other files
 md_indicator_creator.py
 data_gen_minority_class.py
-
+test.py
 
 # Other directories
 merger/
