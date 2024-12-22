@@ -8,15 +8,15 @@ This works with the food dataset which is located in "data" folder.
 Then the data_saver script exports the data to a new csv file.
 Further functionalities are in the development phase
 ## Current model evaluation
-Accuracy: 71%\
-#################--------
+Accuracy: 89%
+######################---
 
-Precision: 62%\
-###############----------
+Precision: 89%
+######################---
 
-Recall: 71%\
-#################--------
+Recall: 89%
+######################---
 
-F-score: 64%\
-################---------
-######  Update: 12.11.2024
+F-score: 89%
+######################---
+######  Update: 22.12.2024
