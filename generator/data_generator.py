@@ -35,17 +35,33 @@ cleaned_data = cleaned_data.drop(columns=['Palm oil', 'Karagen'], axis=1)
 def numerical_data_generator(n):
     synthetic_data = pd.DataFrame()
     for i in list(cleaned_data.select_dtypes(np.number).columns):
-        m = cleaned_data[i].mean()
-        s = cleaned_data[i].std()
-        if i != 'Price':
-            synthetic_data[i] = abs(np.random.normal(m,s,n))
+        noise_range = round(np.std(cleaned_data[i]),2)
+        if i == "Calories":
+            noise_cal = np.random.randint(-noise_range,noise_range,n)
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_cal))
+        elif i == "Fat":
+            noise_ft = np.random.randint(-noise_range,noise_range,n)
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_ft))
+        elif i == "Sugar":
+            noise_sug = np.random.randint(-noise_range,noise_range,n)
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_sug))
+        elif i == "Protein":
+            noise_prot = np.round(np.random.normal(0,noise_range,n),2)
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_prot))
+        elif i == "Salt":
+            noise_slt = np.round(np.random.normal(0,noise_range,n))
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_slt))
+        elif i == "Price":
+            noise_prc = np.round(np.random.normal(0,noise_range,n))
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_prc))
+        elif i == "Carbohydrates":
+            noise_carbo = np.random.randint(-noise_range,noise_range,n)
+            synthetic_data[i] = np.round(abs(cleaned_data[i] + noise_carbo))
         else:
-            synthetic_data[i] = np.random.uniform(0.75,50,n)
-        if i != 'Calories':
-            synthetic_data[i] = round(synthetic_data[i],1)
-        else:
-            synthetic_data[i] = synthetic_data[i].astype(int)
+            continue
     return synthetic_data
+
+            
 
 
 
@@ -84,14 +100,14 @@ def text_data_generator(n):
 
 
 print('Generating numerical data...')
-synthetic_numerical_data = numerical_data_generator(100)
+synthetic_numerical_data = numerical_data_generator(84)
 print('Generating text data...')
-synthetic_text_data = text_data_generator(100)
+synthetic_text_data = text_data_generator(84)
 
 print('Merging data...')
 synthetic_dataset = pd.concat([synthetic_numerical_data,synthetic_text_data],axis=1)
 print('Reordering data...')
 synthetic_dataset_reordered = synthetic_dataset.iloc[:, [7,8,0,1,2,3,4,5,9,10,11,12,6,13]]
 print('Saving data...')
-synthetic_dataset_reordered.to_csv('data/new_synth_data.csv', sep='\t', index=False, header=True)
+synthetic_dataset_reordered.to_csv('data/synthetic_data.csv', sep=',', index=False, header=True)
 print('Successful!')
